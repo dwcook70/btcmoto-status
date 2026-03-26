@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>BTCMoto Status</title>
-    <meta http-equiv="refresh" content="300">
+    <meta http-equiv="refresh" content="300"> <!-- full page reload every 5 min for new bot data -->
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
@@ -95,7 +95,7 @@
             <h1>&#x0e3f; BTCMoto</h1>
             <span class="badge testnet">TESTNET</span>
         </header>
-        <div class="timestamp">Last updated: 3/26/2026 05:57 PM CDT</div>
+        <div class="timestamp">Last updated: 3/26/2026 06:15 PM CDT</div>
 
         <!-- Portfolio -->
         <div class="card">
@@ -138,10 +138,10 @@
                             <td>0.0560</td>
                             <td>$68,861.30</td>
                             <td>$3,856.23</td>
-                            <td>$68,821.40</td>
-                            <td>$3,854.00</td>
-                            <td class="green" style="font-weight:700;">+$2.23</td>
-                            <td class="green" style="font-weight:700;">+0.06%</td>
+                            <td id="pos-current-price">$68,768.50</td>
+                            <td id="pos-market-value">$3,851.04</td>
+                            <td id="pos-pnl-dollar" class="green" style="font-weight:700;">+$5.20</td>
+                            <td id="pos-pnl-pct" class="green" style="font-weight:700;">+0.13%</td>
                             <td>$71,257.25</td>
                         </tr>
                     </tbody>
@@ -163,7 +163,7 @@
             <div class="indicator-grid">
                 <div class="indicator-box">
                     <div class="label">BTC Price</div>
-                    <div class="value">$71,297.60</div>
+                    <div class="value" id="live-btc-price">$68,768.50</div>
                 </div>
                 <div class="indicator-box">
                     <div class="label">EMA 21</div>
@@ -224,8 +224,71 @@
         </div>
 
         <footer>
-            BTCMoto Momentum Trading Bot &bull; Auto-refreshes every 5 minutes
+            BTCMoto Momentum Trading Bot &bull; Price updates every 30 seconds
+            <div id="last-price-update" style="margin-top:4px;font-size:10px;color:#555;"></div>
         </footer>
     </div>
+    <script>
+    (function() {
+        // Position data baked in at publish time for P&L recalculation
+        var POS = {"qty": 0.056, "entry_price": 68861.3, "is_short": true};
+
+        function fmtUSD(v) {
+            if (v == null || isNaN(v)) return '$--';
+            return '$' + Math.abs(v).toLocaleString('en-US', {minimumFractionDigits:2, maximumFractionDigits:2});
+        }
+
+        function updatePrice(price) {
+            // Update BTC Price indicator
+            var el = document.getElementById('live-btc-price');
+            if (el) el.textContent = fmtUSD(price);
+
+            // Update open position if we have one
+            if (!POS || !POS.qty || !POS.entry_price) return;
+
+            var costBasis = POS.qty * POS.entry_price;
+            var marketValue = POS.qty * price;
+            var pnl = POS.is_short ? (costBasis - marketValue) : (marketValue - costBasis);
+            var pnlPct = costBasis > 0 ? (pnl / costBasis * 100) : 0;
+            var cls = pnl >= 0 ? 'green' : 'red';
+            var sign = pnl >= 0 ? '+' : '';
+
+            var cpEl = document.getElementById('pos-current-price');
+            var mvEl = document.getElementById('pos-market-value');
+            var pdEl = document.getElementById('pos-pnl-dollar');
+            var ppEl = document.getElementById('pos-pnl-pct');
+
+            if (cpEl) cpEl.textContent = fmtUSD(price);
+            if (mvEl) mvEl.textContent = fmtUSD(marketValue);
+            if (pdEl) {
+                pdEl.textContent = sign + fmtUSD(Math.abs(pnl));
+                pdEl.className = cls;
+                pdEl.style.fontWeight = '700';
+            }
+            if (ppEl) {
+                ppEl.textContent = sign + Math.abs(pnlPct).toFixed(2) + '%';
+                ppEl.className = cls;
+                ppEl.style.fontWeight = '700';
+            }
+
+            // Update timestamp
+            var tsEl = document.getElementById('last-price-update');
+            if (tsEl) tsEl.textContent = 'Price updated: ' + new Date().toLocaleTimeString();
+        }
+
+        function fetchPrice() {
+            fetch('https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT')
+                .then(function(r) { return r.json(); })
+                .then(function(d) {
+                    if (d && d.price) updatePrice(parseFloat(d.price));
+                })
+                .catch(function() {});
+        }
+
+        // Fetch immediately, then every 30 seconds
+        fetchPrice();
+        setInterval(fetchPrice, 30000);
+    })();
+    </script>
 </body>
 </html>
