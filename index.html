@@ -95,7 +95,7 @@
             <h1>&#x0e3f; BTCMoto</h1>
             <span class="badge testnet">TESTNET</span>
         </header>
-        <div class="timestamp">Last updated: 3/27/2026 09:16 AM CDT</div>
+        <div class="timestamp">Last updated: 3/27/2026 09:31 AM CDT</div>
 
         <!-- Portfolio -->
         <div class="card">
@@ -135,19 +135,19 @@
                     <tbody>
                         <tr>
                             <td><span class="side-badge short">SHORT</span></td>
-                            <td>0.0560</td>
+                            <td>0.0448</td>
                             <td>$68,861.30</td>
-                            <td>$3,856.23</td>
-                            <td id="pos-current-price">$66,294.00</td>
-                            <td id="pos-market-value">$3,712.46</td>
-                            <td id="pos-pnl-dollar" class="green" style="font-weight:700;">+$143.77</td>
-                            <td id="pos-pnl-pct" class="green" style="font-weight:700;">+3.73%</td>
+                            <td>$3,084.99</td>
+                            <td id="pos-current-price">$65,799.90</td>
+                            <td id="pos-market-value">$2,947.84</td>
+                            <td id="pos-pnl-dollar" class="green" style="font-weight:700;">+$137.15</td>
+                            <td id="pos-pnl-pct" class="green" style="font-weight:700;">+4.45%</td>
                             <td>$70,852.26</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="risk-note">Risk to stop: $111.49 (2.9% of cost basis)</div>
+            <div class="risk-note">Risk to stop: $89.19 (2.9% of cost basis)</div>
         </div>
 
         <!-- Closed Positions -->
@@ -163,7 +163,7 @@
             <div class="indicator-grid">
                 <div class="indicator-box">
                     <div class="label">BTC Price</div>
-                    <div class="value" id="live-btc-price">$66,294.00</div>
+                    <div class="value" id="live-btc-price">$65,799.90</div>
                 </div>
                 <div class="indicator-box">
                     <div class="label">EMA 21</div>
@@ -240,7 +240,7 @@
     <script>
     (function() {
         // Position data baked in at publish time for P&L recalculation
-        var POS = {"qty": 0.056, "entry_price": 68861.3, "is_short": true};
+        var POS = {"qty": 0.0448, "entry_price": 68861.3, "is_short": true};
 
         function fmtUSD(v) {
             if (v == null || isNaN(v)) return '$--';
