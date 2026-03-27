@@ -95,7 +95,7 @@
             <h1>&#x0e3f; BTCMoto</h1>
             <span class="badge testnet">TESTNET</span>
         </header>
-        <div class="timestamp">Last updated: 3/27/2026 11:06 AM CDT</div>
+        <div class="timestamp">Last updated: 3/27/2026 11:16 AM CDT</div>
 
         <!-- Portfolio -->
         <div class="card">
@@ -108,6 +108,10 @@
                 <div class="stat">
                     <span class="label">Wallet Balance</span>
                     <span class="value">$8,479.51</span>
+                </div>
+                <div class="stat">
+                    <span class="label">Unrealized P&L</span>
+                    <span class="value green" id="portfolio-upnl">$131.46 (8.52%)</span>
                 </div>
                 <div class="stat">
                     <span class="label">Realized P&L</span>
@@ -138,10 +142,10 @@
                             <td>0.0448</td>
                             <td>$68,861.30</td>
                             <td>$3,084.99</td>
-                            <td id="pos-current-price">$65,860.70</td>
-                            <td id="pos-market-value">$2,950.56</td>
-                            <td id="pos-pnl-dollar" class="green" style="font-weight:700;">+$134.43</td>
-                            <td id="pos-pnl-pct" class="green" style="font-weight:700;">+4.36%</td>
+                            <td id="pos-current-price">$65,880.20</td>
+                            <td id="pos-market-value">$2,951.43</td>
+                            <td id="pos-pnl-dollar" class="green" style="font-weight:700;">+$133.55</td>
+                            <td id="pos-pnl-pct" class="green" style="font-weight:700;">+4.33%</td>
                             <td>$70,852.26</td>
                         </tr>
                     </tbody>
@@ -189,7 +193,7 @@
             <div class="indicator-grid">
                 <div class="indicator-box">
                     <div class="label">BTC Price</div>
-                    <div class="value" id="live-btc-price">$65,860.70</div>
+                    <div class="value" id="live-btc-price">$65,880.20</div>
                 </div>
                 <div class="indicator-box">
                     <div class="label">EMA 21</div>
@@ -283,7 +287,8 @@
 
             var costBasis = POS.qty * POS.entry_price;
             var marketValue = POS.qty * price;
-            var pnl = POS.is_short ? (costBasis - marketValue) : (marketValue - costBasis);
+            var funding = POS.funding || 0;
+            var pnl = POS.is_short ? (costBasis - marketValue - funding) : (marketValue - costBasis - funding);
             var pnlPct = costBasis > 0 ? (pnl / costBasis * 100) : 0;
             var cls = pnl >= 0 ? 'green' : 'red';
             var sign = pnl >= 0 ? '+' : '';
@@ -304,6 +309,13 @@
                 ppEl.textContent = sign + Math.abs(pnlPct).toFixed(2) + '%';
                 ppEl.className = cls;
                 ppEl.style.fontWeight = '700';
+            }
+
+            // Update portfolio unrealized P&L card
+            var upnlEl = document.getElementById('portfolio-upnl');
+            if (upnlEl) {
+                upnlEl.textContent = sign + fmtUSD(Math.abs(pnl)) + ' (' + pnlPct.toFixed(2) + '%)';
+                upnlEl.className = 'value ' + cls;
             }
 
             // Update timestamp
