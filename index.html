@@ -95,7 +95,7 @@
             <h1>&#x0e3f; BTCMoto</h1>
             <span class="badge testnet">TESTNET</span>
         </header>
-        <div class="timestamp">Last updated: 3/29/2026 05:31 PM CDT</div>
+        <div class="timestamp">Last updated: 3/29/2026 05:46 PM CDT</div>
 
         <!-- Portfolio -->
         <div class="card">
@@ -111,7 +111,7 @@
                 </div>
                 <div class="stat">
                     <span class="label">Unrealized P&L</span>
-                    <span class="value green" id="portfolio-upnl">$2.52 (7.31%)</span>
+                    <span class="value green" id="portfolio-upnl">$3.55 (10.32%)</span>
                 </div>
                 <div class="stat">
                     <span class="label">Realized P&L</span>
@@ -139,22 +139,22 @@
                     <tbody>
                         <tr>
                             <td><span class="side-badge short">SHORT</span></td>
-                            <td>0.0010</td>
+                            <td>0.0008</td>
                             <td>$68,861.30</td>
-                            <td>$68.86</td>
-                            <td id="pos-current-price">$66,346.20</td>
-                            <td id="pos-market-value">$66.35</td>
-                            <td id="pos-pnl-dollar" class="green" style="font-weight:700;">+$2.52</td>
-                            <td id="pos-pnl-pct" class="green" style="font-weight:700;">+3.65%</td>
+                            <td>$55.09</td>
+                            <td id="pos-current-price">$65,335.60</td>
+                            <td id="pos-market-value">$52.27</td>
+                            <td id="pos-pnl-dollar" class="green" style="font-weight:700;">+$2.82</td>
+                            <td id="pos-pnl-pct" class="green" style="font-weight:700;">+5.12%</td>
                             <td>$68,324.74</td>
                         </tr>
                     </tbody>
                 </table>
             </div>
-            <div class="risk-note">Risk to stop: $0.54 (0.8% of cost basis)</div>
+            <div class="risk-note">Risk to stop: $0.43 (0.8% of cost basis)</div>
             <div style="margin-top:8px;font-size:13px;color:#aaa;">
-            Profit Tiers: <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#333;color:#666;font-size:10px;font-weight:700;margin-right:3px;">1</span><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#333;color:#666;font-size:10px;font-weight:700;margin-right:3px;">2</span><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#333;color:#666;font-size:10px;font-weight:700;margin-right:3px;">3</span> <span style="margin-left:4px;">0/3 taken</span>
-            &nbsp;|&nbsp; Position: 0.0010 / 0.0010 BTC (100% remaining)
+            Profit Tiers: <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#00d084;color:#1a1a2e;font-size:10px;font-weight:700;margin-right:3px;">&#10003;</span><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#333;color:#666;font-size:10px;font-weight:700;margin-right:3px;">2</span><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#333;color:#666;font-size:10px;font-weight:700;margin-right:3px;">3</span> <span style="margin-left:4px;">1/3 taken</span>
+            &nbsp;|&nbsp; Position: 0.0008 / 0.0010 BTC (80% remaining)
         </div>
         </div>
 
@@ -194,6 +194,18 @@
                     <td class="green" style="font-weight:700;">+$87.90</td>
                     <td class="green" style="font-weight:700;">+2.85%</td>
                     <td style="font-size:12px;color:#888;">GIVEBACK CAP: P&L dropped 3.6% from peak of 9.3% (now 5.7%). Max giveback: 3.0%</td>
+                </tr>
+                <tr>
+                    <td>Mar 29, 2026</td>
+                    <td><span class="side-badge short" style="font-size:10px;padding:2px 8px;">SHORT</span></td>
+                    <td>0.0002</td>
+                    <td>$68,861.30</td>
+                    <td>$13.77</td>
+                    <td>$65,306.50</td>
+                    <td>$13.06</td>
+                    <td class="green" style="font-weight:700;">+$0.71</td>
+                    <td class="green" style="font-weight:700;">+5.16%</td>
+                    <td style="font-size:12px;color:#888;">PROFIT TIER 1: Move $3,554.80 (5.2%) >= 1.0x ATR ($2,763.67) — taking 20% of original position</td>
                 </tr></tbody>
                 </table>
             </div>
@@ -205,7 +217,7 @@
             <div class="indicator-grid">
                 <div class="indicator-box">
                     <div class="label">BTC Price</div>
-                    <div class="value" id="live-btc-price">$66,346.20</div>
+                    <div class="value" id="live-btc-price">$65,335.60</div>
                 </div>
                 <div class="indicator-box">
                     <div class="label">EMA 21</div>
@@ -282,7 +294,7 @@
     <script>
     (function() {
         // Position data baked in at publish time for P&L recalculation
-        var POS = {"qty": 0.001, "entry_price": 68861.3, "is_short": true, "funding": 0.0};
+        var POS = {"qty": 0.0008, "entry_price": 68861.3, "is_short": true, "funding": 0.0};
 
         function fmtUSD(v) {
             if (v == null || isNaN(v)) return '$--';
