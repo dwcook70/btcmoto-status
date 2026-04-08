@@ -95,7 +95,7 @@
             <h1>&#x0e3f; BTCMoto</h1>
             <span class="badge testnet">TESTNET</span>
         </header>
-        <div class="timestamp">Last updated: 4/07/2026 07:16 PM CDT</div>
+        <div class="timestamp">Last updated: 4/07/2026 07:30 PM CDT</div>
 
         <!-- Portfolio -->
         <div class="card">
@@ -103,15 +103,15 @@
             <div class="stat-grid">
                 <div class="stat">
                     <span class="label">Portfolio Value</span>
-                    <span class="value highlight big-number">$10,122.54</span>
+                    <span class="value highlight big-number">$10,121.01</span>
                 </div>
                 <div class="stat">
                     <span class="label">Wallet Balance</span>
-                    <span class="value">$10,122.54</span>
+                    <span class="value">$8,574.38</span>
                 </div>
                 <div class="stat">
                     <span class="label">Unrealized P&L</span>
-                    <span class="value green" id="portfolio-upnl">$0.00 (0.00%)</span>
+                    <span class="value red" id="portfolio-upnl">$-148.81 (-9.64%)</span>
                 </div>
                 <div class="stat">
                     <span class="label">Realized P&L</span>
@@ -130,7 +130,34 @@
         
         <div class="card">
             <div class="section-title">Open Positions</div>
-            <div class="empty-msg">No open positions</div>
+            <div style="overflow-x:auto;">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Side</th><th>Qty (BTC)</th><th>Entry Price</th><th>Cost Basis</th>
+                            <th>Current Price</th><th>Market Value</th><th>P&L ($)</th><th>P&L (%)</th><th>Stop</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="side-badge short">SHORT</span></td>
+                            <td>0.0450</td>
+                            <td>$68,615.60</td>
+                            <td>$3,087.70</td>
+                            <td id="pos-current-price">$71,939.30</td>
+                            <td id="pos-market-value">$3,237.27</td>
+                            <td id="pos-pnl-dollar" class="red" style="font-weight:700;">$149.57</td>
+                            <td id="pos-pnl-pct" class="red" style="font-weight:700;">4.84%</td>
+                            <td>$91,867.25</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="risk-note">Risk to stop: $1,046.32 (33.9% of cost basis)</div>
+            <div style="margin-top:8px;font-size:13px;color:#aaa;">
+            Profit Tiers: <span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#333;color:#666;font-size:10px;font-weight:700;margin-right:3px;">1</span><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#333;color:#666;font-size:10px;font-weight:700;margin-right:3px;">2</span><span style="display:inline-flex;align-items:center;justify-content:center;width:22px;height:22px;border-radius:50%;background:#333;color:#666;font-size:10px;font-weight:700;margin-right:3px;">3</span> <span style="margin-left:4px;">0/3 taken</span>
+            &nbsp;|&nbsp; Position: 0.0450 / 0.0450 BTC (100% remaining)
+        </div>
         </div>
 
         <!-- Closed Positions -->
@@ -199,6 +226,16 @@
                         </tr>
                     </thead>
                     <tbody>
+                <tr>
+                    <td>Apr 07 07:30 PM</td>
+                    <td>daily_entry</td>
+                    <td>$10,121.01</td>
+                    <td class="">$0.00</td>
+                    <td class="green">+$123.07</td>
+                    <td style="text-transform:uppercase;">short</td>
+                    <td style="font-size:12px;color:#888;">RSI 39.3 | ADX 49.7</td>
+                    <td style="font-size:12px;color:#4caf50;font-weight:600;">SHORT 3/3 (100%)</td>
+                </tr>
                 <tr>
                     <td>Apr 07 01:30 PM</td>
                     <td>daily_entry</td>
@@ -388,16 +425,6 @@
                     <td style="text-transform:uppercase;">short</td>
                     <td style="font-size:12px;color:#888;">RSI 39.5 | ADX 20.9</td>
                     <td style="font-size:12px;color:#888;font-weight:600;">--</td>
-                </tr>
-                <tr>
-                    <td>Mar 28 06:33 PM</td>
-                    <td>daily_entry</td>
-                    <td>$10,119.01</td>
-                    <td class="">$0.00</td>
-                    <td class="green">+$122.36</td>
-                    <td style="text-transform:uppercase;">short</td>
-                    <td style="font-size:12px;color:#888;">RSI 39.6 | ADX 21.0</td>
-                    <td style="font-size:12px;color:#888;font-weight:600;">--</td>
                 </tr></tbody>
                 </table>
             </div>
@@ -409,28 +436,28 @@
             <div class="indicator-grid">
                 <div class="indicator-box">
                     <div class="label">BTC Price</div>
-                    <div class="value" id="live-btc-price">$71,949.20</div>
+                    <div class="value" id="live-btc-price">$71,939.30</div>
                 </div>
                 <div class="indicator-box">
                     <div class="label">EMA 21</div>
-                    <div class="value">91,020.53</div>
+                    <div class="value">90,888.94</div>
                 </div>
                 <div class="indicator-box">
                     <div class="label">EMA 55</div>
-                    <div class="value">91,907.14</div>
+                    <div class="value">91,823.00</div>
                 </div>
                 <div class="indicator-box">
                     <div class="label">RSI 14</div>
-                    <div class="value">38.8</div>
+                    <div class="value">39.3</div>
                 </div>
                 <div class="indicator-box">
                     <div class="label">ADX 14</div>
-                    <div class="value green">47.7</div>
+                    <div class="value green">49.7</div>
                     <div style="font-size:10px;color:#888;margin-top:4px;">Strong Trend</div>
                 </div>
                 <div class="indicator-box">
                     <div class="label">ATR 14</div>
-                    <div class="value">$1,355.49</div>
+                    <div class="value">$1,304.41</div>
                 </div>
                 <div class="indicator-box">
                     <div class="label">EMA Trend</div>
@@ -486,7 +513,7 @@
     <script>
     (function() {
         // Position data baked in at publish time for P&L recalculation
-        var POS = null;
+        var POS = {"qty": 0.045, "entry_price": 68615.6, "is_short": true, "funding": 0.0};
 
         function fmtUSD(v) {
             if (v == null || isNaN(v)) return '$--';
